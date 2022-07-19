@@ -10,4 +10,5 @@ ToDo:
 -Rough Breakdown of tasks:
 
 Project Requirements:
--Must use at least two
+-Must use at least two server-side APIs
+-Must use a CSS framework other than Bootstrap
