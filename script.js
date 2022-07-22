@@ -21,9 +21,32 @@ var userinput = btnForm.textContent;
 //TODO: Make a variable for ID into localstorage and pull it out
 //TODO: Pull ID number from Dune and put it into TMDB API
 //TODO: Display movie info from TMDB API
+
+//https://the-dune-api.herokuapp.com/quotes
+
+
+// allows to grab movie id from dune API NOT WORKING CORRECTLY
+let movieId = {
+    fetchMovieId: function (){
+        fetch(
+            'https://the-dune-api.herokuapp.com/quotes'
+            ).then((response) => response.json())
+            .then((data) => this.pullMovieId(data));
+
+    },
+    pullMovieId: function(data) {
+        var { id }  = data.id;
+        console.log(id)
+    }
+};
+
+
+
+
 function movieQuote(){
     fetch();
 }
+
 
 //TODO: Base framework for api search on TMDB
 function randomMovie(){
