@@ -21,6 +21,7 @@ var userinput = btnForm.textContent;
 //TODO: Make a variable for ID into localstorage and pull it out
 //TODO: Pull ID number from Dune and put it into TMDB API
 //TODO: Display movie info from TMDB API
+
 //https://the-dune-api.herokuapp.com/quotes
 
 
@@ -41,6 +42,10 @@ let movieId = {
 
 
 
+
+function movieQuote(){
+    fetch();
+}
 
 
 //TODO: Base framework for api search on TMDB
