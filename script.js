@@ -83,24 +83,27 @@ btnForm.on("click", getMovieReview());
 
 
 //! below is incompletefunction for last viewed movie
-function lastSearch () {
-    movieList.empty()
-    for (var i = 0; i < movieArray.length; i ++) {
-        var newButton = $("<button>").attr("type", "button").attr("class","savedBtn button bg-secondary is-large");
-        newButton.attr("data-name", movieArray[i])
-        newButton.text(movieArray[i]);
-        movieList.prepend(newButton);
-    }
-    $(".savedBtn").on("click", function(event){
-        event.preventDefault();
-        var userInput = $(this).data("name");
-    })
+// function lastSearch () {
+    // movieList.empty()
+    // for (var i = 0; i < movieArray.length; i ++) {
+        // var newButton = $("<button>").attr("type", "button").attr("class","savedBtn button bg-secondary is-large");
+        // newButton.attr("data-name", movieArray[i])
+        // newButton.text(movieArray[i]);
+        // movieList.prepend(newButton);
+    // }
+    // $(".savedBtn").on("click", function(event){
+        // event.preventDefault();
+        // var userInput = $(this).data("name");
+    // })
 
-}
+// }
 
 //sets last viewed movie to storage
-function storeData () {
-    localStorage.setItem("Saved Movie", JSON.stringify(movieArray));
-}
+// function storeData () {
+    // localStorage.setItem("Saved Movie", JSON.stringify(movieArray));
+// }
 //!above is to be finished later
+
+// This is me trying my best //
+// This one down here is getting the information on the movie that shows up in the screen
 
