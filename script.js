@@ -2,17 +2,20 @@
 //var nytKey = "&api-key=MaQgrhzm0bWhoTQZXafGplCBCmjaWwKI";
 //var nytUrl = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=";
 //the Movie data base info
+var availilityApi = "http://api.gowatchit.com/api/v2/movies/:id/availabilities"
+//replace id of above
 
-var testThis = "https://api.themoviedb.org/3/movie/105?api_key=9057cf76a0f4698dd3c5d50c15b617fc&language=en-US";
+//var testThis = "https://api.themoviedb.org/3/movie/105?api_key=9057cf76a0f4698dd3c5d50c15b617fc&language=en-US";
 //! 77 is the temporary movie ID it will be changed based on secondary API (movieID)
 var imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
 var exampleImg = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/5Xsu2o5IsZRuuxCEVZ9nVve21FP.jpg"
-var quoteUrl = "https://the-dune-api.herokuapp.com/quotes"
+//var quoteUrl = "https://the-dune-api.herokuapp.com/quotes"
 var tmdbKey = "api_key=9057cf76a0f4698dd3c5d50c15b617fc";
 var tmdbUrl = "https://api.themoviedb.org/3/movie/550?query=";
 //TODO: add key and URL for movie quotes
 var movieList = $(".historyList");
 var btnForm = $(".btn");
+var movieTitle = $("#title");
 //!if we go back to using nytAPI this needs to be user input  
 var userInput = btnForm.textContent;
 var movieArray = JSON.parse(localStorage.getItem("Saved Movie")) || [];
@@ -33,35 +36,34 @@ var movieQuote;
 //API works but does not pull correct data from the array
 // fetch for the quote API
 
-function quoteQuery(){
-    fetch(quoteUrl)
-        .then(function (response) {
-            console.log(response);
-            return response.json();
-        })
-        .then(function (quoteResponse){
-            console.log(quoteResponse)
-            movieID = quoteResponse[0].id;
-            movieQuote = quoteResponse[0].quote;
-            console.log(movieID);
-            console.log(movieQuote);
-            //throw quoteResponse.json();
-        });
-}
-    function movieQuery(){
-        fetch(testThis)
-            .then(function (otherResponse){
-                console.log(otherResponse);
-                return otherResponse.json();
-            })
-            .then(function (movieResponse){
-                var movieTitle = movieResponse.title;
-                console.log(movieTitle);
-            })
-    }
+//function quoteQuery(){
+//    fetch(quoteUrl)
+ //       .then(function (response) {
+ //           console.log(response);
+ //           return response.json();
+ //       })
+ //       .then(function (quoteResponse){
+//            console.log(quoteResponse)
+ //           movieID = quoteResponse[0].id;
+//            movieQuote = quoteResponse[0].quote;
+//            console.log(movieID);
+//            console.log(movieQuote);
+//            //throw quoteResponse.json();
+//        });
+//}
+//    function movieQuery(){
+//        fetch(testThis)
+//            .then(function (otherResponse){
+//                console.log(otherResponse);
+//                return otherResponse.json();
+//            })
+//            .then(function (movieResponse){
+//                var movieTitle = movieResponse.title;
+//                console.log(movieTitle);
+//            })
+//        }
 
-btnForm.on("click", quoteQuery(), movieQuery());
-console.log(movieID)
+
 
 //TODO: Base framework for api search on TMDB
 var tmdbKey = "9057cf76a0f4698dd3c5d50c15b617fc";
@@ -74,28 +76,34 @@ function getData() {
         return response.json();
     })
     .then((data) => {
-        var movieTitle = document.getElementById("title");
+        var movieTitleData = data.title;
         var moviePoster = document.getElementById("poster");
-        movieTitle.innerHTML = data.title;
+        movieTitle = movieTitleData;
         moviePoster.setAttribute("src", imgURL.concat(data.poster_path));
+        console.log(movieTitle)
     })
-    .catch(() => {
-        console.log("Oops! Try again later!");
+    .then(function getMovieReview() {
+        console.log(movieTitle);
+        fetch("http://www.omdbapi.com/?t=" + movieTitle + "&i=tt3896198&apikey=af5f592e")
+    
+            .then((response2) => {
+                return response2.json();
+            })
     })
+
 }
+    //.catch(() => {
+    //    console.log("Oops! Try again later!");
+    //})
 
-
-function getMovieReview() {
-    console.log("http://api.nytimes.com/svc/movies/v2/reviews/search.json?critics-pick=Y&order=by-publication-date&api-key=MaQgrhzm0bWhoTQZXafGplCBCmjaWwKI");
-}
-btnForm.on("click", getMovieReview());
-
-//TODO: Base framework for api search on TMDB 
-//!will need to be based on movie picked from TMDB
-//function movieReview(){
-//    fetch(nytKey + userInputTwo + nytUrl);
+//function getMovieReview() {
+//    fetch("http://www.omdbapi.com/?t=" + movieTitle + "&i=tt3896198&apikey=af5f592e")
+//        .then((response2) => {
+//            return response2.json();
+//        })
 //}
 
+btnForm.on("click", getData());
 
 //! below is incompletefunction for last viewed movie
 function lastSearch () {
