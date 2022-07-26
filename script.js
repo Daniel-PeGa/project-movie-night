@@ -31,24 +31,35 @@ var movieQuote;
 
 //API works but does not pull correct data from the array
 // fetch for the quote API
+
 function quoteQuery(){
     fetch(quoteUrl)
         .then(function (response) {
-             console.log(response);
-             return response.json();
-           
+            console.log(response);
+            return response.json();
         })
-        //.then((res) => res.json())
-        //.then(leftShoe => console.log(leftShoe))
         .then(function (quoteResponse){
             console.log(quoteResponse)
             movieID = quoteResponse[0].id;
             movieQuote = quoteResponse[0].quote;
             console.log(movieID);
             console.log(movieQuote);
-        })
-};
-btnForm.on("click", quoteQuery());
+            //throw quoteResponse.json();
+        });
+}
+    function movieQuery(){
+        fetch(testThis)
+            .then(function (otherResponse){
+                console.log(otherResponse);
+                return otherResponse.json();
+            })
+            .then(function (movieResponse){
+                var movieTitle = movieResponse.title;
+                console.log(movieTitle);
+            })
+    }
+
+btnForm.on("click", quoteQuery(), movieQuery());
 console.log(movieID)
 
 //TODO: Base framework for api search on TMDB
@@ -58,9 +69,6 @@ function randomMovie(){
     showRandomMovie(data.results);
 }
 
-function showRandomMovie() {
-
-}
 
 //TODO: Base framework for api search on TMDB 
 //!will need to be based on movie picked from TMDB
