@@ -122,3 +122,14 @@ btnForm.on("click", getMovieReview());
 // This is me trying my best //
 // This one down here is getting the information on the movie that shows up in the screen
 
+function lastSearch() {
+    var selectedMovie = ("Result of the button being clicked in the form of an object")
+    var storeData = [];
+    localStorage.setItem(selectedMovie,JSON.stringify("photo of selected movie and maybe review or something idk lol"))
+    storeData.push("What we want to put in the previous movie from the API");
+    localStorage.setItem("storeData", JSON.stringify(storeData))
+}
+
+function showLastSearch() {
+    var selectedMovieGetItem = JSON.parse(localStorage.getItem(storeData))
+}
