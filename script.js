@@ -64,10 +64,24 @@ btnForm.on("click", quoteQuery(), movieQuery());
 console.log(movieID)
 
 //TODO: Base framework for api search on TMDB
-function randomMovie(){
-    fetch(tmdbKey + userInput + tmdbUrl);
-    var data = response.json();
-    showRandomMovie(data.results);
+var tmdbKey = "9057cf76a0f4698dd3c5d50c15b617fc";
+var imgURL = "https://image.tmdb.org/t/p/w500";
+
+var randomIDGenerator = Math.floor(Math.random() * 999);
+function getData() {
+    fetch("https://api.themoviedb.org/3/movie/"+randomIDGenerator+"?api_key="+tmdbKey+"&language=en-US")
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        var movieTitle = document.getElementById("title");
+        var moviePoster = document.getElementById("poster");
+        movieTitle.innerHTML = data.title;
+        moviePoster.setAttribute("src", imgURL.concat(data.poster_path));
+    })
+    .catch(() => {
+        console.log("Oops! Try again later!");
+    })
 }
 
 
