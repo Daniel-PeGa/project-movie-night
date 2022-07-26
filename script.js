@@ -3,9 +3,10 @@
 //var nytUrl = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=";
 //the Movie data base info
 
-var testThis = "https://api.themoviedb.org/3/movie/77?api_key=9057cf76a0f4698dd3c5d50c15b617fc&language=en-US";
+var testThis = "https://api.themoviedb.org/3/movie/105?api_key=9057cf76a0f4698dd3c5d50c15b617fc&language=en-US";
 //! 77 is the temporary movie ID it will be changed based on secondary API (movieID)
-
+var imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
+var exampleImg = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/5Xsu2o5IsZRuuxCEVZ9nVve21FP.jpg"
 var quoteUrl = "https://the-dune-api.herokuapp.com/quotes"
 var tmdbKey = "api_key=9057cf76a0f4698dd3c5d50c15b617fc";
 var tmdbUrl = "https://api.themoviedb.org/3/movie/550?query=";
@@ -63,10 +64,24 @@ btnForm.on("click", quoteQuery(), movieQuery());
 console.log(movieID)
 
 //TODO: Base framework for api search on TMDB
-function randomMovie(){
-    fetch(tmdbKey + userInput + tmdbUrl);
-    var data = response.json();
-    showRandomMovie(data.results);
+var tmdbKey = "9057cf76a0f4698dd3c5d50c15b617fc";
+var imgURL = "https://image.tmdb.org/t/p/w500";
+
+var randomIDGenerator = Math.floor(Math.random() * 999);
+function getData() {
+    fetch("https://api.themoviedb.org/3/movie/"+randomIDGenerator+"?api_key="+tmdbKey+"&language=en-US")
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        var movieTitle = document.getElementById("title");
+        var moviePoster = document.getElementById("poster");
+        movieTitle.innerHTML = data.title;
+        moviePoster.setAttribute("src", imgURL.concat(data.poster_path));
+    })
+    .catch(() => {
+        console.log("Oops! Try again later!");
+    })
 }
 
 
