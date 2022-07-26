@@ -1,9 +1,41 @@
-* {
-    background-color: brown;
-    color:white;
-}
 
 
 body {
-    margin:0;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
 }
+
+
+.container { 
+    height: 200px;
+    position: relative;
+    border: none; 
+}
+
+.id {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10em 0em 0em 0em;
+    font-size: x-large;
+    font-weight:600 ;
+}
+
+
+.button {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    height: 4em;
+    width: 20em;
+    border-radius: 10em;
+    background-color: rgb(209, 104, 104);
+    color: white;
+    font-weight: 700;
+  }
