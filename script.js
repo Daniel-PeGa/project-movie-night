@@ -70,6 +70,11 @@ function randomMovie(){
 }
 
 
+function getMovieReview() {
+    console.log("http://api.nytimes.com/svc/movies/v2/reviews/search.json?critics-pick=Y&order=by-publication-date&api-key=MaQgrhzm0bWhoTQZXafGplCBCmjaWwKI");
+}
+btnForm.on("click", getMovieReview());
+
 //TODO: Base framework for api search on TMDB 
 //!will need to be based on movie picked from TMDB
 //function movieReview(){
