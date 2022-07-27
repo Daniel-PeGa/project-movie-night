@@ -19,6 +19,8 @@ var movieTitle = $("#title");
 //!if we go back to using nytAPI this needs to be user input  
 var userInput = btnForm.textContent;
 var movieArray = JSON.parse(localStorage.getItem("Saved Movie")) || [];
+var moviePlot = $('#moviePlot');
+var movieRating = $('#movieRating');
 
 //to be filled in by fetch requests
 var movieID = 77;
@@ -90,11 +92,18 @@ function getData() {
     .then(function getMovieReview() {
         console.log(movieTitle);
         fetch("http://www.omdbapi.com/?t=" + movieTitle + "&i=tt3896198&apikey=af5f592e")
-    
+        .then((response) => {
+            return response.json();
+        })
             .then((data2) => {
-                var reviewMovieTitle = data2[0].Title;
-                console.log(reviewMovieTitle);
-                return data2.json();
+                console.log(data2);
+                var movieRatingData = data2.Ratings[1].Value;
+                var moviePlotData = data2.Plot;
+                moviePlot.textContent = data2.Plot
+                
+                console.log(movieRatingData);
+                console.log(moviePlotData);
+                movieRating.textContent = movieRatingData;
             })
     })
 
@@ -148,4 +157,4 @@ function lastSearch() {
 function showLastSearch() {
     var selectedMovieGetItem = JSON.parse(localStorage.getItem(storeData))
 }
-Footer
+
