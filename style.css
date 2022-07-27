@@ -4,34 +4,39 @@ body {
     height: 80vh;
     margin: 0;
     font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(180deg, #9e468763, transparent);
 }
 
+.head {
+    background: linear-gradient(45deg, #ff0046, #1781c7cc);
+}
 
 .container { 
     height: 200px;
     position: relative;
     border: none; 
 }
-
 .id {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 3em 0em 0em 0em;
     font-size: x-large;
-    font-weight:600 ;
+    font-weight: 800;
+    padding: 1.5em;
+    color: white;
 }
 
 
 .button {
     margin: 2em 0 3em 0;
     display: flex;
-   margin-left: auto;
-   margin-right:auto;
-   height: 4em;
+    margin-left: auto;
+    margin-right: auto;
+    height: 4em;
     width: 20em;
     border-radius: 10em;
-    background-color: rgb(209, 104, 104);
+    background: linear-gradient(45deg, #ff0046, #ff00008c);
     color: white;
     font-weight: 700;
   }
@@ -48,6 +53,13 @@ body {
     margin-right: auto;
 }
 
+.movieDisplay {
+    background: linear-gradient(359deg, #0000000d, transparent);
+}
+.head {
+    background: linear-gradient(45deg, #ff0046, #1781c7cc);
+}
+
 
 .prevSecContainer{
 
@@ -55,10 +67,11 @@ body {
 }
 
 .prevSec {
-    margin: 10em;
+    padding: 10em;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(1deg, #5180bd70, #f2f2f2);
 }
   .prevList {
       list-style: none;
@@ -74,8 +87,12 @@ body {
     margin: 0px 25px;
 }
 
+
+
 .hidden {
     display: none;
+    background-color: transparent;
+    background: transparent;
 }
 
 #modal {
