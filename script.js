@@ -72,7 +72,7 @@ var imgURL = "https://image.tmdb.org/t/p/w500";
 var randomIDGenerator = Math.floor(Math.random() * 999);
 console.log(randomIDGenerator);
 function getData() {
-    fetch("https://api.themoviedb.org/3/movie/"+41+"?api_key="+tmdbKey+"&language=en-US")
+    fetch("https://api.themoviedb.org/3/movie/"+movieTitle+"?api_key="+tmdbKey+"&language=en-US")
     .then(function (response) {
         if (!response.ok){
             throw response.json()
