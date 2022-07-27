@@ -70,9 +70,13 @@ var tmdbKey = "9057cf76a0f4698dd3c5d50c15b617fc";
 var imgURL = "https://image.tmdb.org/t/p/w500";
 
 var randomIDGenerator = Math.floor(Math.random() * 999);
+console.log(randomIDGenerator);
 function getData() {
-    fetch("https://api.themoviedb.org/3/movie/"+randomIDGenerator+"?api_key="+tmdbKey+"&language=en-US")
-    .then((response) => {
+    fetch("https://api.themoviedb.org/3/movie/"+41+"?api_key="+tmdbKey+"&language=en-US")
+    .then(function (response) {
+        if (!response.ok){
+            throw response.json()
+        }
         return response.json();
     })
     .then((data) => {
@@ -89,6 +93,11 @@ function getData() {
             .then((response2) => {
                 return response2.json();
             })
+
+        }) 
+    .catch(function (error){
+        window.alert("oops, try again")
+        console.error(error);
     })
 
 }
@@ -103,7 +112,7 @@ function getData() {
 //        })
 //}
 
-btnForm.on("click", getData());
+btnForm.on("submit", getData());
 
 //! below is incompletefunction for last viewed movie
 // function lastSearch () {
