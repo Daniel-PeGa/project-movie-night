@@ -78,7 +78,7 @@ function getData() {
     .then((data) => {
         var movieTitleData = data.title;
         var moviePoster = document.getElementById("poster");
-        movieTitle = movieTitleData;
+        movieTitle.append(movieTitleData);
         moviePoster.setAttribute("src", imgURL.concat(data.poster_path));
         console.log(movieTitle);
         if (data.title === undefined) {
@@ -90,8 +90,10 @@ function getData() {
         console.log(movieTitle);
         fetch("http://www.omdbapi.com/?t=" + movieTitle + "&i=tt3896198&apikey=af5f592e")
     
-            .then((response2) => {
-                return response2.json();
+            .then((data2) => {
+                var reviewMovieTitle = data2[0].Title;
+                console.log(reviewMovieTitle);
+                return data2.json();
             })
     })
 
