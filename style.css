@@ -1,4 +1,3 @@
-
 body {
     justify-content: center;
     align-items: center;
@@ -71,4 +70,8 @@ body {
     height: 150px;
     width: 100px;
     margin: 0px 25px;
+}
+
+.hidden {
+    display: none;
 }
