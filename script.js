@@ -79,6 +79,7 @@ function getData() {
         var movieTitleData = data.title;
         var moviePoster = document.getElementById("poster");
         movieTitle.append(movieTitleData);
+        movieTitle = movieTitleData;
         moviePoster.setAttribute("src", imgURL.concat(data.poster_path));
         console.log(movieTitle);
         if (data.title === undefined) {
