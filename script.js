@@ -80,7 +80,11 @@ function getData() {
         var moviePoster = document.getElementById("poster");
         movieTitle = movieTitleData;
         moviePoster.setAttribute("src", imgURL.concat(data.poster_path));
-        console.log(movieTitle)
+        console.log(movieTitle);
+        if (data.title === undefined) {
+            alert("Sorry! An unexpected error occured! Please try again.");
+            document.getElementById("poster").classList.add("hidden");
+        }
     })
     .then(function getMovieReview() {
         console.log(movieTitle);
@@ -141,3 +145,4 @@ function lastSearch() {
 function showLastSearch() {
     var selectedMovieGetItem = JSON.parse(localStorage.getItem(storeData))
 }
+Footer
