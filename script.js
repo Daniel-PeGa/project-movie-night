@@ -82,7 +82,7 @@ function getData() {
         moviePoster.setAttribute("src", imgURL.concat(data.poster_path));
         console.log(movieTitle);
         if (data.title === undefined) {
-            alert("Sorry! An unexpected error occured! Please try again.");
+            document.getElementById("modal").classList.remove("hidden");
             document.getElementById("poster").classList.add("hidden");
         }
     })

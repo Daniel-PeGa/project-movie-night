@@ -75,3 +75,8 @@ body {
 .hidden {
     display: none;
 }
+
+#modal {
+    text-align: center;
+    font-weight: bold;
+}
