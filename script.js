@@ -14,10 +14,8 @@ var tmdbKey = "api_key=9057cf76a0f4698dd3c5d50c15b617fc";
 var tmdbUrl = "https://api.themoviedb.org/3/movie/550?query=";
 //TODO: add key and URL for movie quotes
 var movieList = $(".historyList");
-var btnForm = $(".btn");
 var movieTitle = $("#title");
 //!if we go back to using nytAPI this needs to be user input  
-var userInput = btnForm.textContent;
 var movieArray = JSON.parse(localStorage.getItem("Saved Movie")) || [];
 var moviePlot = $('#moviePlot');
 var movieRating = $('#movieRating');
@@ -25,6 +23,7 @@ var movieRating = $('#movieRating');
 //to be filled in by fetch requests
 var movieID = 77;
 var movieQuote;
+var btnForm = $(".btn");
 
 //TODO: When random button gets pressed generates random movie id
 //TODO: From random id fetch into the API
@@ -71,24 +70,27 @@ var movieQuote;
 var tmdbKey = "9057cf76a0f4698dd3c5d50c15b617fc";
 var imgURL = "https://image.tmdb.org/t/p/w500";
 
-var randomIDGenerator = Math.floor(Math.random() * 999);
+
 function getData() {
+    var randomIDGenerator = Math.floor(Math.random() * 999);
     fetch("https://api.themoviedb.org/3/movie/"+randomIDGenerator+"?api_key="+tmdbKey+"&language=en-US")
     .then((response) => {
         return response.json();
-    })
-    .then((data) => {
+    }
+    ).then((data) => {
+        if (data.title === undefined) {
+            getData();
+        } else {
         var movieTitleData = data.title;
         var moviePoster = document.getElementById("poster");
         movieTitle.append(movieTitleData);
         movieTitle = movieTitleData;
         moviePoster.setAttribute("src", imgURL.concat(data.poster_path));
         console.log(movieTitle);
-        if (data.title === undefined) {
-            document.getElementById("modal").classList.remove("hidden");
-            document.getElementById("poster").classList.add("hidden");
         }
-    })
+    }).catch((error) => {
+        console.error('Error:', error);
+      })
     .then(function getMovieReview() {
         console.log(movieTitle);
         fetch("http://www.omdbapi.com/?t=" + movieTitle + "&i=tt3896198&apikey=af5f592e")
@@ -108,6 +110,7 @@ function getData() {
     })
 
 }
+btnForm.on("click", getData());
     //.catch(() => {
     //    console.log("Oops! Try again later!");
     //})
@@ -118,8 +121,6 @@ function getData() {
 //            return response2.json();
 //        })
 //}
-
-btnForm.on("click", getData());
 
 //! below is incompletefunction for last viewed movie
 // function lastSearch () {
@@ -146,15 +147,29 @@ btnForm.on("click", getData());
 // This is me trying my best //
 // This one down here is getting the information on the movie that shows up in the screen
 
-function lastSearch() {
-    var selectedMovie = ("Result of the button being clicked in the form of an object")
-    var storeData = [];
-    localStorage.setItem(selectedMovie,JSON.stringify("photo of selected movie and maybe review or something idk lol"))
-    storeData.push("What we want to put in the previous movie from the API");
-    localStorage.setItem("storeData", JSON.stringify(storeData))
-}
+//function lastSearch() {
+    //var selectedMovie = ("Result of the button being clicked in the form of an object")
+    //var storeData = [];
+    //localStorage.setItem(selectedMovie,JSON.stringify("photo of selected movie and maybe review or something idk lol"))
+    //storeData.push("What we want to put in the previous movie from the API");
+    //localStorage.setItem("storeData", JSON.stringify(storeData))
+//}
 
-function showLastSearch() {
-    var selectedMovieGetItem = JSON.parse(localStorage.getItem(storeData))
-}
+//function showLastSearch() {
+    //var selectedMovieGetItem = JSON.parse(localStorage.getItem(storeData))
+//}
 
+var searchedMovies = [];
+function getMovies() {
+    var movie = movieTitle;
+    if (!searchedMovies.includes(movie)) {
+        searchedMovies.push(movie);
+        var movieSearch = $(`<li>${movie}</li>`);
+        $('#clickedMovies').append(movieSearch);
+    }
+    localStorage.setItem('movie', JSON.stringify(searchedMovies));
+}
+$(document).on("click", "li", function() {
+    var clickedMovie = $(this).text();
+    getData(clickedMovie);
+})
