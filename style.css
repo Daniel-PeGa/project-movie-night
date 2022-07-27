@@ -26,22 +26,32 @@ body {
 
 
 .button {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    height: 4em;
+    margin: 3em 0 5em 0;
+    display: flex;
+   margin-left: auto;
+   margin-right:auto;
+   height: 4em;
     width: 20em;
     border-radius: 10em;
     background-color: rgb(209, 104, 104);
     color: white;
     font-weight: 700;
   }
+  
+  .poster {
+    /* align-items: center; */
+    /* place-items: center; */
+    /* background: center; */
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 
 .prevSec {
+    margin: 10em;
     display: flex;
     flex-direction: column;
     align-items: center;
