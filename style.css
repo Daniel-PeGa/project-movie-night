@@ -2,7 +2,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 80vh;
-    margin: 1px;
+    margin: 0px;
     font-family: 'Quicksand', sans-serif;
     background: linear-gradient(180deg, #9e468763, transparent);
 }
@@ -23,6 +23,16 @@ p {
     height: 200px;
     position: relative;
     border: none; 
+}
+
+.select {
+    margin: 2em 0 3em 0;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    height: 4em;
+    width: 14.5em;
+    border-radius: 10em;
 }
 
 .id {

@@ -8,10 +8,32 @@ var tmdbKey = "9057cf76a0f4698dd3c5d50c15b617fc";
 var imgURL = "https://image.tmdb.org/t/p/w500";
 var x = 0;
 var movies = Array();
+var randomIDGenerator;
+
+//! code for future use, Used to get random movie based off genre, add getGenre() to click event to activate
+//!has issues with form submitting upon page load, preventDefault() is undefined for some reason so solution unclear
+var genreIDGenerator;
+var genreInputVal = $('#genre-input').value;
+
+function getGenre(event) {
+    var genreID = genreInputVal;
+    fetch("https://api.themoviedb.org/3/discover/movie?api_key="+tmdbKey+"&with_genres="+genreID)
+    .then((data3) => {
+        console.log(data3);
+        //by default, the above api pulls 20 movies based on genre to use with the below RNG 0-19
+        genreIDGenerator = Math.floor(Math.random() * 19);
+        console.log(genreIDGenerator);
+        console.log(genreInputVal);
+       //randomIDGenerator = data3.id;
+    })
+}
+//getGenre();
+//! end of future development code
 
 function getData(event) {
     //event.preventDefault();
-    var randomIDGenerator = Math.floor(Math.random() * 1000);
+
+    randomIDGenerator = Math.floor(Math.random() * 1000);
     console.log (randomIDGenerator);
     fetch("https://api.themoviedb.org/3/movie/"+randomIDGenerator+"?api_key="+tmdbKey+"&language=en-US")
     .then((response) => {
