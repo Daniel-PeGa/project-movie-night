@@ -16,26 +16,35 @@
         <h1 class="id">Super Awesome Movie Night</h1>
     </header>
     </div>
-
+    <!-- Form to submit Random Movie Genereator -->
     <div class="container">
         <form class="center">
-            <button class="button">Random Movie Selector Button</button>
+            <div class="control">
+                <input class="button" id="btnForm" type="submit" value="Random Movie Selector Button" onclick="getData()"></input>
+            </div>
         </form>
     </div>
-   
+   <!-- Poster -->
     <div class="movieDisplay">  
         <h1 class="title" id="title"></h1>
         <img src="" class="poster" id="poster">
     </div>
+    <!--Button to save Selected movie to local storage  -->
+    <div class="control">
+        <button class="button" onClick="getMovies()">Save Movie</button>
+    </div>
+    <div class = "container" id="savedMovieContainer">
+        <!-- container for movie rating + synopsis -->
+        <div class="container">
+            <h3><strong>--MOVIE RATING--</strong></h3>
+            <p id="movieRating"></p>
+            <h3><strong>--SYNOPSIS--</strong></h3> 
+            <p id="moviePlot"></p>
+        </div>
     
-    <button class="button" onClick="getMovies()">Save Movie</button>
-
-    <div class="container">
-        <p id="movieRating"></p> 
-        <p id="moviePlot"></p>
+        <!-- appended movie titles go here to replace rating & synopsis -->
     </div>
 
-    <div id="savedMovieContainer"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type='text/javascript' src='script.js'></script> 
