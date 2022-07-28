@@ -16,14 +16,14 @@ var tmdbUrl = "https://api.themoviedb.org/3/movie/550?query=";
 var movieList = $(".historyList");
 var movieTitle = $("#title");
 //!if we go back to using nytAPI this needs to be user input  
-var movieArray = JSON.parse(localStorage.getItem("Saved Movie")) || [];
+var movieArray = JSON.parse(localStorage.getItem("movie")) || [];
 var moviePlot = $('#moviePlot');
 var movieRating = $('#movieRating');
 
 //to be filled in by fetch requests
 var movieID = 77;
 var movieQuote;
-var btnForm = $(".btn");
+var btnForm = $("#btnForm");
 
 //TODO: When random button gets pressed generates random movie id
 //TODO: From random id fetch into the API
@@ -83,7 +83,6 @@ function getData() {
     })
 
 }
-btnForm.on("click", getData());
     //.catch(() => {
     //    console.log("Oops! Try again later!");
     //})
@@ -133,12 +132,13 @@ btnForm.on("click", getData());
 //}
 
 var searchedMovies = [];
-function getMovies() {
+function getMovies(movieHistory) {
     var movie = movieTitle;
     if (!searchedMovies.includes(movie)) {
         searchedMovies.push(movie);
         var movieSearch = $(`<li>${movie}</li>`);
         $('#clickedMovies').append(movieSearch);
+        searchedMovies.push(movieHistory);
     }
     localStorage.setItem('movie', JSON.stringify(searchedMovies));
 }
