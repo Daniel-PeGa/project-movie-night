@@ -39,8 +39,6 @@ function getData(event) {
             .then((data2) => {
                 moviePlot.append(data2.Plot);
                 movieRating.append(data2.Ratings[0].Value);
-                displayMovie();
-
             })
     })
 }
