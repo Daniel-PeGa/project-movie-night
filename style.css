@@ -2,11 +2,19 @@ body {
     justify-content: center;
     align-items: center;
     height: 80vh;
-    margin: 0;
+    margin: 1px;
     font-family: 'Quicksand', sans-serif;
     background: linear-gradient(180deg, #9e468763, transparent);
 }
-
+h3 {
+    text-align: center;
+    background-color: #e7acac8c;
+}
+p {
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+    background-color: #e6bebe8c;
+}
 .head {
     background: linear-gradient(45deg, #ff0046, #1781c7cc);
 }
@@ -58,12 +66,6 @@ body {
 }
 .head {
     background: linear-gradient(45deg, #ff0046, #1781c7cc);
-}
-
-
-.prevSecContainer{
-
-
 }
 
 .prevSec {

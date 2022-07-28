@@ -19,9 +19,8 @@ var movieTitle = $("#title");
 var movieArray = JSON.parse(localStorage.getItem("movie")) || [];
 var moviePlot = $('#moviePlot');
 var movieRating = $('#movieRating');
-
+var movieID;
 //to be filled in by fetch requests
-var movieID = 77;
 var movieQuote;
 var btnForm = $("#btnForm");
 
@@ -44,8 +43,10 @@ var tmdbKey = "9057cf76a0f4698dd3c5d50c15b617fc";
 var imgURL = "https://image.tmdb.org/t/p/w500";
 
 
-function getData() {
-    var randomIDGenerator = Math.floor(Math.random() * 999);
+function getData(event) {
+    //event.preventDefault();
+    var randomIDGenerator = Math.floor(Math.random() * 1000);
+    console.log (randomIDGenerator);
     fetch("https://api.themoviedb.org/3/movie/"+randomIDGenerator+"?api_key="+tmdbKey+"&language=en-US")
     .then((response) => {
         return response.json();
@@ -56,82 +57,29 @@ function getData() {
         } else {
         var movieTitleData = data.title;
         var moviePoster = document.getElementById("poster");
+        var movieIDData = data.id;
+        movieID = movieIDData;
+        console.log(movieIDData);
         movieTitle.append(movieTitleData);
         movieTitle = movieTitleData;
         moviePoster.setAttribute("src", imgURL.concat(data.poster_path));
-        console.log(movieTitle);
         }
-    }).catch((error) => {
-        console.error('Error:', error);
       })
     .then(function getMovieReview() {
-        console.log(movieTitle);
-        fetch("http://www.omdbapi.com/?t=" + movieTitle + "&i=tt3896198&apikey=af5f592e")
+        fetch("http://www.omdbapi.com/?t=" + movieTitle + "&plot=full&i=tt3896198&apikey=af5f592e")
         .then((response) => {
             return response.json();
         })
             .then((data2) => {
-                console.log(data2);
-                var movieRatingData = data2.Ratings[1].Value;
-                var moviePlotData = data2.Plot;
-                moviePlot.textContent = data2.Plot
-                
-                console.log(movieRatingData);
-                console.log(moviePlotData);
-                movieRating.textContent = movieRatingData;
+                moviePlot.append(data2.Plot);
+                movieRating.append(data2.Ratings[0].Value);
             })
     })
 
 }
 btnForm.on("click", getData());
-    //.catch(() => {
-    //    console.log("Oops! Try again later!");
-    //})
 
-//function getMovieReview() {
-//    fetch("http://www.omdbapi.com/?t=" + movieTitle + "&i=tt3896198&apikey=af5f592e")
-//        .then((response2) => {
-//            return response2.json();
-//        })
-//}
-
-//! below is incompletefunction for last viewed movie
-// function lastSearch () {
-    // movieList.empty()
-    // for (var i = 0; i < movieArray.length; i ++) {
-        // var newButton = $("<button>").attr("type", "button").attr("class","savedBtn button bg-secondary is-large");
-        // newButton.attr("data-name", movieArray[i])
-        // newButton.text(movieArray[i]);
-        // movieList.prepend(newButton);
-    // }
-    // $(".savedBtn").on("click", function(event){
-        // event.preventDefault();
-        // var userInput = $(this).data("name");
-    // })
-
-// }
-
-//sets last viewed movie to storage
-// function storeData () {
-    // localStorage.setItem("Saved Movie", JSON.stringify(movieArray));
-// }
-//!above is to be finished later
-
-// This is me trying my best //
-// This one down here is getting the information on the movie that shows up in the screen
-
-//function lastSearch() {
-    //var selectedMovie = ("Result of the button being clicked in the form of an object")
-    //var storeData = [];
-    //localStorage.setItem(selectedMovie,JSON.stringify("photo of selected movie and maybe review or something idk lol"))
-    //storeData.push("What we want to put in the previous movie from the API");
-    //localStorage.setItem("storeData", JSON.stringify(storeData))
-//}
-
-//function showLastSearch() {
-    //var selectedMovieGetItem = JSON.parse(localStorage.getItem(storeData))
-//}
-
+//! below is movie history coding
 var x = 0;
 var movies = Array();
 function getMovies() {
