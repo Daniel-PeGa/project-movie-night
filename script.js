@@ -83,6 +83,7 @@ function getData() {
     })
 
 }
+btnForm.on("click", getData());
     //.catch(() => {
     //    console.log("Oops! Try again later!");
     //})
@@ -138,7 +139,6 @@ function getMovies() {
     x = 0;
    } else {
     var xString = JSON.parse(localStorage.counter);
-    debugger;
     x = parseInt(xString);
     movies = JSON.parse(localStorage.getItem("movieKey"));
  }
