@@ -131,18 +131,29 @@ function getData() {
     //var selectedMovieGetItem = JSON.parse(localStorage.getItem(storeData))
 //}
 
-var searchedMovies = [];
-function getMovies(movieHistory) {
-    var movie = movieTitle;
-    if (!searchedMovies.includes(movie)) {
-        searchedMovies.push(movie);
-        var movieSearch = $(`<li>${movie}</li>`);
-        $('#clickedMovies').append(movieSearch);
-        searchedMovies.push(movieHistory);
-    }
-    localStorage.setItem('movie', JSON.stringify(searchedMovies));
+var x = 0;
+var movies = Array();
+function getMovies() {
+   if (localStorage.getItem("counter") == null) {
+    x = 0;
+   } else {
+    var xString = JSON.parse(localStorage.counter);
+    debugger;
+    x = parseInt(xString);
+    movies = JSON.parse(localStorage.getItem("movieKey"));
+ }
+   movies[x] = movieTitle;
+   x++;
+   localStorage.setItem('movieKey', JSON.stringify(movies));
+   localStorage.setItem('counter', JSON.stringify(x));
+   displayMovie();
 }
-$(document).on("click", "li", function() {
-    var clickedMovie = $(this).text();
-    getData(clickedMovie);
-})
+ 
+function displayMovie() {
+   var names = JSON.parse(localStorage.movieKey);
+   var e = "<hr/>";  
+   for (var y=0; y<names.length; y++) {
+    e += "Movie " + (y+1) + " is " + names[y] + "<br/>";
+   }
+   document.getElementById("savedMovieContainer").innerHTML = e;
+}
