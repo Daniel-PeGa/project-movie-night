@@ -57,6 +57,7 @@ function getData(event) {
         movieTitle = movieTitleData;
         moviePoster.setAttribute("src", imgURL.concat(data.poster_path));
         $("#savedMovieContainer").addClass("hidden");
+        $('.container').removeAttr('id');
         }
       })
     .then(function getMovieReview() {
