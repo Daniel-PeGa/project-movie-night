@@ -1,4 +1,5 @@
-var movieTitle = $("#title");
+var movieTitleElement = $("#title");
+console.log(movieTitleElement);
 var moviePlot = $('#moviePlot');
 var movieRating = $('#movieRating');
 var movieID;
@@ -31,7 +32,7 @@ function getGenre(event) {
 //! end of future development code
 
 function getData(event) {
-    //event.preventDefault();
+    event.preventDefault();
 
     randomIDGenerator = Math.floor(Math.random() * 1000);
     console.log (randomIDGenerator);
@@ -48,7 +49,11 @@ function getData(event) {
         var movieIDData = data.id;
         movieID = movieIDData;
         console.log(movieIDData);
-        movieTitle.append(movieTitleData);
+
+
+        console.log(movieTitleData);
+        //console.log(movieTitle);
+        movieTitleElement.text(movieTitleData);
         movieTitle = movieTitleData;
         moviePoster.setAttribute("src", imgURL.concat(data.poster_path));
         }
@@ -59,13 +64,14 @@ function getData(event) {
             return response.json();
         })
             .then((data2) => {
-                moviePlot.append(data2.Plot);
-                movieRating.append(data2.Ratings[0].Value);
+                moviePlot.text(data2.Plot);
+                movieRating.text(data2.Ratings[0].Value);
+                console.log(moviePlot);
             })
     })
 }
 
-btnForm.on("click", getData());
+btnForm.on("click", getData);
 
 var x = 0;
 var movies = Array();
