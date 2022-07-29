@@ -121,3 +121,11 @@ p {
 .hidden {
     display: none;
 }
+
+p#movieRating {
+    font-family: 'Quicksand', sans-serif;
+}
+
+p#moviePlot {
+    font-family: 'Quicksand', sans-serif;
+}
