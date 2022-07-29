@@ -56,6 +56,7 @@ function getData(event) {
         movieTitleElement.text(movieTitleData);
         movieTitle = movieTitleData;
         moviePoster.setAttribute("src", imgURL.concat(data.poster_path));
+        $("#savedMovieContainer").addClass("hidden");
         }
       })
     .then(function getMovieReview() {
@@ -99,4 +100,5 @@ function displayMovie()
         e += "Saved movie to watch later is " + names[y] + "<br/>";
     }
    document.getElementById("savedMovieContainer").innerHTML = e;
+   $("#savedMovieContainer").removeClass("hidden");
 }

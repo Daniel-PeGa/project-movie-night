@@ -70,6 +70,10 @@ p {
     margin-right: auto;
 }
 
+.movieDisplay {
+    background: linear-gradient(359deg, #0000000d, transparent);
+}
+
 .head {
     background: linear-gradient(45deg, #ff0046, #1781c7cc);
 }
@@ -112,4 +116,8 @@ p {
 #savedMovieContainer {
     text-align: center;
     font-size: 15px;
+}
+
+.hidden {
+    display: none;
 }
