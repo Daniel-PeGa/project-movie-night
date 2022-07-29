@@ -114,8 +114,10 @@ p {
 }
 
 #savedMovieContainer {
+    display: inline-block;
     text-align: center;
     font-size: 15px;
+    margin-left: 450px;
 }
 
 .hidden {
