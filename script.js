@@ -41,7 +41,7 @@ function getData(event) {
     }
     ).then((data) => {
         if (data.title === undefined) {
-            getData();
+            getData(event);
         } else {
         var movieTitleData = data.title;
         var moviePoster = document.getElementById("poster");
@@ -54,7 +54,7 @@ function getData(event) {
         }
       })
     .then(function getMovieReview() {
-        fetch("http://www.omdbapi.com/?t=" + movieTitle + "&plot=full&i=tt3896198&apikey=af5f592e")
+        fetch("https://www.omdbapi.com/?t=" + movieTitle + "&plot=full&i=tt3896198&apikey=af5f592e")
         .then((response) => {
             return response.json();
         })
@@ -66,6 +66,7 @@ function getData(event) {
 }
 
 btnForm.on("click", getData());
+
 var x = 0;
 var movies = Array();
 function getMovies() {
